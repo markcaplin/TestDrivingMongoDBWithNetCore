@@ -1,0 +1,56 @@
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h2>Product Information</h2>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+   
+    <form #form="ngForm">
+      <div>
+
+        <mat-form-field style="width:300px; margin-right:10px;">
+          <input matInput name="ProductNumber" readonly #ProductNumber
+                 value="{{productDetailViewModel.product.productNumber}}"
+                 placeholder="Product Number">
+        </mat-form-field>
+
+        <mat-form-field style="width:300px; margin-right:10px;">
+          <input matInput name="Description" readonly #Description
+                 value="{{productDetailViewModel.product.description}}"
+                 placeholder="Description">
+        </mat-form-field>
+
+        <div style="clear:both;"></div>
+
+        <mat-form-field style="width:600px">
+          <textarea matInput name="LongDescription" rows="5" wrap="soft"
+                    readonly #LongDescription placeholder="Overview">
+                  {{productDetailViewModel.product.longDescription}}
+          </textarea>
+        </mat-form-field>
+
+        <div style="clear:both;"></div>
+
+        <mat-form-field style="width:300px; margin-right:10px;">
+          <input matInput name="UnitPrice" readonly #UnitPrice
+                 value="{{productDetailViewModel.product.unitPrice | currency}}"
+                 placeholder="Unit Price">
+        </mat-form-field>
+
+        <mat-form-field style="width:300px; font: bold">
+          <mat-icon matSuffix>edit</mat-icon>
+          <input matInput name="OrderQuantity" #OrderQuantity value="{{productDetailViewModel.orderQuantity}}"
+                 [(ngModel)]="productDetailViewModel.orderQuantity"
+                 placeholder="Order Quantity">
+        </mat-form-field>
+      </div>
+    </form>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-flat-button color="primary" (click)="addToCart()">Add To Cart</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,80 @@
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h2>Place Order</h2>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+      <form novalidate [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+        <div>
+          <mat-form-field style="width:300px; margin-right:10px;">
+            <input matInput name="FirstName"
+                   formControlName="firstName"
+                   placeholder="First Name">
+            <mat-error *ngIf="orderForm.get('firstName').hasError('required')">First Name is required.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field style="width:300px">
+            <input matInput name="LastName"
+                   formControlName="lastName"
+                   placeholder="Last Name">
+            <mat-error *ngIf="orderForm.get('lastName').hasError('required')">Last Name is required.</mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field style="width:300px; margin-right:10px;">
+            <input matInput name="AddressLine1"
+                   formControlName="addressLine1"
+                   placeholder="Address Line 1">
+            <mat-error *ngIf="orderForm.get('addressLine1').hasError('required')">Address Line 1 is required.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field style="width:300px">
+            <input matInput name="AddressLine2"
+                   formControlName="addressLine2"
+                   placeholder="Address Line 2">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field style="width:300px; margin-right:10px;">
+            <input matInput name="City"
+                   formControlName="city"
+                   placeholder="City">
+            <mat-error *ngIf="orderForm.get('city').hasError('required')">City is required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field style="width:300px">
+            <input matInput name="State"
+                   formControlName="state"
+                   placeholder="State">
+            <mat-error *ngIf="orderForm.get('state').hasError('required')">State is required.</mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field style="width:300px; margin-right:10px;">
+            <input matInput name="ZipCode"
+                   formControlName="zipCode"
+                   placeholder="Zip Code">
+            <mat-error *ngIf="orderForm.get('zipCode').hasError('required')">Zip Code in required.</mat-error>
+            <mat-error *ngIf="orderForm.get('zipCode').hasError('minlength')">Zip Code is invalid</mat-error>
+
+          </mat-form-field>
+
+          <mat-form-field style="width:300px">
+            <input matInput name="EmailAddress"
+                   formControlName="email"
+                   placeholder="Email Address">
+            <mat-error *ngIf="orderForm.get('email').hasError('email')">Email address is invalid</mat-error>
+            <mat-error *ngIf="orderForm.get('email').hasError('required')">Email address is required</mat-error>
+          </mat-form-field>
+        </div>
+      </form>
+
+</mat-card-content>
+  <mat-card-actions>
+    <button [disabled]="orderForm.invalid" mat-flat-button color="primary" (click)="placeOrder()">Place Order</button>
+    &nbsp;&nbsp;
+    <button mat-flat-button color="primary" (click)="emptyCart()">Empty Cart</button>
+  </mat-card-actions>
+</mat-card>

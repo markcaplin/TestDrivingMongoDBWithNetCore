@@ -1,0 +1,46 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="background-color: green; padding:5px;">
+
+  <div style="height:35px;vertical-align:top">
+    <div>
+      <h1>
+        <a [routerLink]="['/']">
+          <font color="silver">Welcome to {{ title }}</font>
+        </a>
+      </h1>
+    </div>
+  </div>
+
+  <div class="menu-container mat-elevation-z8">
+
+    <div style="width:300px;padding-left:5px;">
+      <h3>
+        <a [routerLink]="['/product-search']">
+          <span class="label">Product Search</span>
+        </a>
+      </h3>
+    </div>
+    <div style="width:300px;">
+      <h3>
+        <a [routerLink]="['/shopping-cart']">
+          <span class="label">Shopping Cart</span>
+        </a>
+      </h3>
+    </div>
+    <div style="width:300px;">
+      <h3>
+        <a [routerLink]="['/orders']">
+          <span class="label">Orders</span>
+        </a>
+      </h3>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div>
+  <router-outlet></router-outlet>
+</div>
+

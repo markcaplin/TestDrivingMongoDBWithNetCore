@@ -1,0 +1,84 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h2>Orders</h2>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+    <span class="example-container mat-elevation-z8">
+      <mat-table #table [dataSource]="orderInquiryViewModel.orders"
+                 [class.isMobile]="isMobile">
+
+        <ng-container matColumnDef="orderNumber">
+          <mat-header-cell *matHeaderCellDef>Order #</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label" style="min-width:100px; text-align:right;">Order&nbsp;#:&nbsp;&nbsp;</span>
+            {{element.orderNumber}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="orderDate">
+          <mat-header-cell *matHeaderCellDef>Order Date</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label" style="min-width:100px; text-align:right;">Order&nbsp;Date:&nbsp;&nbsp;</span>
+            {{element.orderDate | date: 'MM/dd/yyyy'}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="customerName">
+          <mat-header-cell *matHeaderCellDef>Customer</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label" style="min-width:100px; text-align:right;">Customer:&nbsp;&nbsp;</span>
+            {{element.customerName}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="productNumber">
+          <mat-header-cell *matHeaderCellDef>Product #</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label" style="min-width:100px; text-align:right;">Product&nbsp;#:&nbsp;&nbsp;</span>
+            {{element.productNumber}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label" style="min-width:100px; text-align:right;">Description:&nbsp;&nbsp;</span>
+            {{element.description}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="orderQuantity">
+          <mat-header-cell *matHeaderCellDef>
+            <span>
+              Quantity
+            </span>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label" style="min-width:100px; text-align:right;">Quantity:&nbsp;&nbsp;</span>
+              {{element.orderQuantity}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="unitPrice">
+          <mat-header-cell *matHeaderCellDef>
+            <span>
+              Unit Price
+            </span>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label" style="min-width:100px; text-align:right;">Unit&nbsp;Price:&nbsp;&nbsp;</span>
+              {{ element.unitPrice | currency }}
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="orderInquiryViewModel.displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: orderInquiryViewModel.displayedColumns;"></mat-row>
+      </mat-table>
+
+    </span>
+
+  </mat-card-content>
+</mat-card>

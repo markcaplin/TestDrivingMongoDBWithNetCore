@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="src\app\checkout\checkout.component.ts" />
+    <None Remove="src\app\home\home.component.ts" />
+    <None Remove="src\app\orders\orders.component.ts" />
+    <None Remove="src\app\productdetail\product-detail.component.ts" />
+    <None Remove="src\app\productsearch\product-search.component.ts" />
+    <None Remove="src\app\routing\routing.component.ts" />
+    <None Remove="src\app\shoppingcart\shopping-cart.component.ts" />
+    <None Remove="src\app\view-models\order-detail.viewmodel.ts" />
+    <None Remove="src\app\view-models\order-inquiry-response.viewmodel.ts" />
+    <None Remove="src\app\view-models\order-inquiry.viewmodel.ts" />
+    <None Remove="src\app\view-models\order-response.viewmodel.ts" />
+    <None Remove="src\app\view-models\order.viewmodel.ts" />
+    <None Remove="src\app\view-models\product-detail-response.viewmodel.ts" />
+    <None Remove="src\app\view-models\product-detail.viewmodel.ts" />
+    <None Remove="src\app\view-models\shopping-cart-viewmodel.ts" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <TypeScriptCompile Include="src\app\checkout\checkout.component.ts" />
+    <TypeScriptCompile Include="src\app\home\home.component.ts" />
+    <TypeScriptCompile Include="src\app\orders\orders.component.ts" />
+    <TypeScriptCompile Include="src\app\productdetail\product-detail.component.ts" />
+    <TypeScriptCompile Include="src\app\productsearch\product-search.component.ts" />
+    <TypeScriptCompile Include="src\app\routing\routing.component.ts" />
+    <TypeScriptCompile Include="src\app\shoppingcart\shopping-cart.component.ts" />
+    <TypeScriptCompile Include="src\app\view-models\order-inquiry-response.viewmodel.ts" />
+    <TypeScriptCompile Include="src\app\view-models\order-inquiry.viewmodel.ts" />
+    <TypeScriptCompile Include="src\app\view-models\order-response.viewmodel.ts" />
+    <TypeScriptCompile Include="src\app\view-models\order.viewmodel.ts" />
+    <TypeScriptCompile Include="src\app\view-models\order-detail.viewmodel.ts" />
+    <TypeScriptCompile Include="src\app\view-models\product-detail-response.viewmodel.ts" />
+    <TypeScriptCompile Include="src\app\view-models\product-detail.viewmodel.ts" />
+    <TypeScriptCompile Include="src\app\view-models\shopping-cart-viewmodel.ts" />
+  </ItemGroup>
+
+</Project>
