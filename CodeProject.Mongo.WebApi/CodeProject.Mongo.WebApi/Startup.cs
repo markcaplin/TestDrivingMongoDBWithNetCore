@@ -13,6 +13,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Hosting;
 
 namespace CodeProject.Mongo.WebApi
 {
@@ -28,28 +31,26 @@ namespace CodeProject.Mongo.WebApi
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			CorsPolicyBuilder corsBuilder = new CorsPolicyBuilder();
-
-			corsBuilder.AllowAnyHeader();
-			corsBuilder.AllowAnyMethod();
-			corsBuilder.AllowAnyOrigin();
-			corsBuilder.AllowCredentials();
 
 			services.AddCors(options =>
 			{
-				options.AddPolicy("SiteCorsPolicy", corsBuilder.Build());
+				options.AddPolicy("SiteCorsPolicy",
+					builder =>
+					{
+						builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+					});
 			});
+
+			services.AddControllers().AddNewtonsoftJson();
 
 			services.AddTransient<IOnlineStoreDataService, OnlineStoreDataService>();
 
-			services.AddTransient<IOnlineStoreBusinessService>(provider =>
-			new OnlineStoreBusinessService(provider.GetRequiredService<IOnlineStoreDataService>()));
-
-			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+			services.AddTransient<IOnlineStoreBusinessService>(provider => new OnlineStoreBusinessService(provider.GetRequiredService<IOnlineStoreDataService>()));
+																	  
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
 			app.Use(async (ctx, next) =>
 			{
@@ -60,14 +61,25 @@ namespace CodeProject.Mongo.WebApi
 				}
 			});
 
-			app.UseCors("SiteCorsPolicy");
+			app.UseAuthentication();
 
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
 			}
 
-			app.UseMvc();
+			app.UseHttpsRedirection();
+
+			app.UseRouting();
+
+			app.UseCors("SiteCorsPolicy");
+
+			app.UseAuthorization();
+
+			app.UseEndpoints(endpoints =>
+			{
+				endpoints.MapControllers();
+			});
 		}
 	}
 }
